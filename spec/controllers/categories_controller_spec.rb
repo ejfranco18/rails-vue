@@ -25,6 +25,9 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
 
+  let(:user) { create :user, password: '123123123' }
+  let(:token) { token_generator(user.id) }
+
   # This should return the minimal set of attributes required to create a valid
   # Category. As you add validations to Category, be sure to
   # adjust the attributes here as well.
@@ -55,6 +58,8 @@ RSpec.describe CategoriesController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CategoriesController. Be sure to keep this updated too.
+
+  before { request.headers['HTTP_AUTHORIZATION'] = token }
 
   describe "GET #index" do
     it "returns a success response" do

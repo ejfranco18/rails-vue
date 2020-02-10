@@ -10,7 +10,6 @@ RSpec.describe CategoriesController, type: :routing do
       expect(:get => "api/categories/1").to route_to("categories#show", :id => "1")
     end
 
-
     it "routes to #create" do
       expect(:post => "api/categories").to route_to("categories#create")
     end
